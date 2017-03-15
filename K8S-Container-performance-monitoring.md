@@ -17,10 +17,20 @@ cAdvisor is an open source container resource usage and performance analysis age
 #### Kubelet
 The Kubelet acts as a bridge between the Kubernetes master and the nodes. It manages the pods and containers running on a machine. Kubelet translates each pod into its constituent containers and fetches individual container usage statistics from cAdvisor. It then exposes the aggregated pod resource usage statistics via a REST API.
 
-## Docker container monitoring
-Resource level monitoring can be collected using heapster. I still searching for a Kernel level metrics collection tool for performance observability. It need to collect data from the Linux kernel control groups and from the namespace of the container and expose them through a REST API. Need to assess the IOSP before choosing the agent.
+#### Prometheus
+Prometheus is an open source telemetric observability to collect VM and container metrics. Its being explored to use in GCP environment. It has enhanced capability for custom alerting.
 
-I see the combination of Vector and PCP collector agent are one of the possible options. Yet to be analyzed.
+Will discuss about it capabilities later. TBD.
+
+#### Telegraph
+Telegraph is an open source telemetric observability to collect VM and container metrics. its being explored to use in OpenStack environment.
+
+Will discuss about it capabilities later. TBD.
+
+## Docker container monitoring
+Resource level monitoring can be collected using heapster, Telegraph and Prometheus. Still in search of good Kernel level metrics collection tool for performance observability. It need to collect data from the Linux kernel control groups (cgroup) and from the namespace of the container and expose them through a REST API. Need to assess the IOSP and overload before choosing the agent.
+
+Combination of Vector and PCP collector agent are one of the possible options for Kernel level analysis. Yet to be analyzed in detail.
 
 ## Container Performance analysis
 Playbooks TBD

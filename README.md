@@ -47,7 +47,10 @@ We need to choose the performance fine tune area based on nature of the applicat
 All physical components and the full software stack. Anything in the data path, software or hardware.
  - [Performance Metrics for all software and physical stack](/Performance-Metric.md)
  - [Tools for performance analysis](/Performance_Analysis_Tools.md)
-
+ - [System Profiling and Tuning](./system-profiling-and-tuning)
+ - Application Program Profiling and Tuning  - TBD
+ - [Playbooks](/playbooks)
+ 
 ## Performance Engineering Engagement Out Come
 * High level recommendation
   * Infra/App level configuration changes to improve the performance

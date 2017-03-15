@@ -87,7 +87,7 @@ Debug | IO - IO traces dumped | Blktrace;[perf-tool](https://github.com/brendang
 ### Infrastructure performance analysis playbooks
  - [System performance issue quick guide](/playbooks/system-performance-issue-quickguide.md)
  - Linux performance tools tutorial
- - [Dstat system observation](/playbooks/Dstat-system-observation.md)
+ - [Dstat system observation](/observability-tools/Dstat-system-observation.md)
  - Extended BPF
  - Dtrace
  - Many more to come

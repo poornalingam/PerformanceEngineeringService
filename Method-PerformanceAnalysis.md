@@ -6,6 +6,8 @@ Numerous methodologies and procedures for system performance analysis and tuning
 - [Workload Characterization](#workload-characterization)
 - [Latency Methods](#latency-methods)
 - [Event Tracing](#event-tracing)
+- [Cache Tuning](#cache-tuning)
+- [visualization](#visualization)
 
 ## Tools Methods
 A tools-oriented approach is as follows:
@@ -165,5 +167,22 @@ When performing event tracing, look for the following information:
 - Input: all attributes of an event request: type, direction, size, and so on
 - Times: start time, end time, latency (difference)
 - Result: error status, result of event (size)
+
+##  Cache Tuning
+Applications and operating systems may employ multiple caches for improving I/O performance, from the application down to the disks. Here is a general strategy for tuning each cache level:
+
+1. Aim to cache as high in the stack as possible, closer to where the work is performed, reducing the operational overhead of cache hits.
+2. Check that the cache is enabled and working.
+3. Check the cache hit/miss ratios and miss rate.
+4. If the cache size is dynamic, check its current size.
+5. Tune the cache for the workload. This task depends on available cache tunable parameters.
+6. Tune the workload for the cache. Doing this includes reducing unnecessary consumers of the cache, which frees up more space for the target workload.
+
+Look out for double caching—for example, two different caches that consume main memory and cache the same data twice.
+
+Also consider the overall performance gain of each level of cache tuning. Tuning the CPU Level 1 cache may save nanoseconds, as cache misses may then be served by Level 2. But improving CPU Level 3 cache may avoid much slower DRAM accesses and result in a greater overall performance gain.
+
+## Visaulizations
+TBD
 
 [^Top](#performance-analysis-methodologies) |  [^ Metrics](/Performance-Metric.md)  |  [^Tools](/Performance_Analysis_Tools.md)

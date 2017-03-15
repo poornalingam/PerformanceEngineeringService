@@ -64,6 +64,8 @@ TBD
   * DTrace Plug-in is only available for JDK running on Solaris, but client can run on JMC platforms. Watch out future release for Linux.
 
 ## APM Family Tools
+These application profiling tools are useful to collect stack trace of application calls, find a common code path, collect and analyze response time of a code path, aggregation of code responses, resource utilization in application level (JVM), CPU Sampling, etc. Basically it probes the application in JVM level.   
+
 ### DynaTrace
 TBD
 ### InspectIT

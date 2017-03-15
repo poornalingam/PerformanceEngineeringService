@@ -195,7 +195,7 @@ TBD
 
 #### Vector - Opensource
 
-**Keep this in TO BE WATCH LIST**. Important to note that its a on-demand instance analysis in kernel level detail. You can generate Flame graphs, heat maps for quicker analysis. **Best suitable for container monitoring.**    
+**Keep this in TO BE WATCH LIST**. Important to note that its a on-demand instance analysis in kernel level detail. You can generate Flame graphs, heat maps for quicker analysis. **Best suitable for container monitoring.** It gives the capability to monitor application stack and kernel stack in mix mode.
 
 [Vector](http://vectoross.io/) is an open source (Apache License v2), [NetflexOSS](https://github.com/Netflix/vector), on-host performance monitoring framework which exposes hand picked high resolution system and application metrics to every engineer’s browser. Having the right metrics available on-demand and at a high resolution is key to understand how a system behaves and correctly troubleshoot performance issues.
 - Vector provides access to high-resolution metrics, up to 1 second.
@@ -214,5 +214,8 @@ TBD
 
 <B> Vector Screenshot </B>
 ![Vector screenshot](/Images/Vector-screenshot.png)
+
+<B> Flame graph in mixed mode <B>
+![Flame-graph](/Images/Flame-Graph-Mixed-Mode.png)
 
 [Back to Performance Analysis Tools](/Performance_Analysis_Tools.md#Linux Performance Observation tools)
