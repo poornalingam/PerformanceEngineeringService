@@ -86,10 +86,12 @@ Debug | IO - IO traces dumped | Blktrace;[perf-tool](https://github.com/brendang
 
 ### Infrastructure performance analysis playbooks
  - [System performance issue quick guide](/playbooks/system-performance-issue-quickguide.md)
- - Linux performance tools tutorial
- - [Dstat system observation](/observability-tools/Dstat-system-observation.md)
+ - [Linux performance tools tutorial](/observability-tools/Linux-Performance-Observation-Tools.md)
+ - [Dynamic system observation](/observability-tools/Dynamic-System-observation.md)
  - Extended BPF
  - Dtrace
+ - Vector
+ - Flame Graph
  - Many more to come
 
 [Back to Top](#how-and-what-will-be-analyzed)

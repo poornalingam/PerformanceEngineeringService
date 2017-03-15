@@ -5,7 +5,7 @@ Its too good to explore.
 Flame graph can be used to analyze the application and Kernel Stack together. This capability is a long time need.
 ![Flame Graph](/Images/Flame-Graph-Mixed-Mode.png)
 
-[Talk for JavaOne 2016 ](https://www.slideshare.net/brendangregg/java-performance-analysis-on-linux-with-flame-graphs)
+[Java Performance Analysis Talk in JavaOne 2016 ](https://www.slideshare.net/brendangregg/java-performance-analysis-on-linux-with-flame-graphs)
 
 ## Slides points
 
@@ -91,7 +91,7 @@ $ jstack 1819 […] "main" prio=10 tid=0x00007ff304009000 nid=0x7361 runnable [0
   5. Dump Symbols •  See perf-map-agent docs for updated usage •  e.g., as the same user as java: •  perf-map-agent contains helper scripts. I wrote my own: –  https://github.com/brendangregg/Misc/blob/master/java/jmaps •  Dump symbols quickly after perf record to minimize stale symbols. How I do it: $ cd /usr/lib/jvm/perf-map-agent/out $ java -cp attach-main.jar:$JAVA_HOME/lib/tools.jar net.virtualvoid.perf.AttachOnce PID # perf record -F 99 -a -g -- sleep 30; jmaps
   6. Generate a Mixed-Mode Flame Graph •  Using my FlameGraph software: –  perf script reads perf.data with /tmp/\*.map –  out.stacks01 is an intermediate file; can be handy to keep •  Finally open flame01.svg in a browser •  Check for newer flame graph implementations (e.g., d3) # perf script > out.stacks01 # git clone --depth=1 https://github.com/brendangregg/FlameGraph # cat out.stacks01 | ./FlameGraph/stackcollapse-perf.pl | ./FlameGraph/flamegraph.pl --color=java --hash > flame01.svg
 49. Optimizations •  Linux 2.6+, via perf.data and perf script: •  Linux 4.5+ can use folded output –  Skips the CPU-costly stackcollapse-perf.pl step; see: http://www.brendangregg.com/blog/2016-04-30/linux-perf-folded.html •  Linux 4.9+, via BPF: –  Most efficient: no perf.data file, summarizes in-kernel git clone --depth 1 https://github.com/brendangregg/FlameGraph cd FlameGraph perf record -F 99 -a –g -- sleep 30 perf script | ./stackcollapse-perf.pl |./flamegraph.pl > perf.svg git clone --depth 1 https://github.com/brendangregg/FlameGraph git clone --depth 1 https://github.com/iovisor/bcc ./bcc/tools/profile.py -dF 99 30 | ./FlameGraph/flamegraph.pl > perf.svg
-50. Linux 2.6 perf record perf script capture	stacks	write	text	stackcollapse-perf.pl flamegraph.pl perf.data	write	samples	reads	samples	folded	output	perf record perf report –g folded capture	stacks	folded	report	awk flamegraph.pl perf.data	write	samples	reads	samples folded	output	Linux	4.5	count	stacks	(BPF)	folded	output	flamegraph.pl profile.py Linux	4.9 Linux	Proﬁling	OpJmizaJons
+50. Linux 2.6 perf record perf script capture	stacks	write	text	stackcollapse-perf.pl flamegraph.pl perf.data	write	samples	reads	samples	folded	output	perf record perf report –g folded capture	stacks	folded	report	awk flamegraph.pl perf.data	write	samples	reads	samples folded	output	Linux	4.5	count	stacks	(BPF)	folded	output	flamegraph.pl profile.py Linux	4.9 Linux	Proﬁling	.OpJmizaJons
 51. Automation
 52. Netflix Vector
 53. Netflix Vector Near real-time, per-second metrics Flame Graphs Select Metrics Select Instance
@@ -105,8 +105,11 @@ $ jstack 1819 […] "main" prio=10 tid=0x00007ff304009000 nid=0x7361 runnable [0
 61. TCP Events •  TCP transmit, using dynamic tracing: •  Note: can be high overhead for high packet rates –  For the current perf trace, dump, post-process cycle •  Can also trace TCP connect & accept (lower overhead) •  TCP receive is async –  Could trace via socket read # perf probe tcp_sendmsg # perf record -e probe:tcp_sendmsg -a -g -- sleep 1; jmaps # perf script -f comm,pid,tid,cpu,time,event,ip,sym,dso,trace > out.stacks # perf probe --del tcp_sendmsg TCP sends
 62. CPU Cache Misses •  In this example, sampling via Last Level Cache loads: •  -c is the count (samples once per count) •  Use other CPU counters to sample hits, misses, stalls # perf record -e LLC-loads -c 10000 -a -g -- sleep 5; jmaps # perf script -f comm,pid,tid,cpu,time,event,ip,sym,dso > out.stacks
 63. CPI Flame Graph •  Cycles Per Instruction! –  red == instruction heavy –  blue == cycle heavy (likely mem stall cycles) zoomed:
-64. Java Package Flame Graph •  Sample on-CPU instruction pointer only (no stack) –  Don't need -XX:+PreserveFramePointer •  y-axis: package name hierarchy –  java / util / ArrayList / ::size
-`# perf record -F 199 -a -- sleep 30; ./jmaps # perf script | ./pkgsplit-perf.sh | ./flamegraph.pl > out.svg no	-g	(stacks)	Linux 2.6+ (pre-BPF):`
+64. Java Package Flame Graph •  Sample on-CPU instruction pointer only (no stack) –  Don't need -XX:+PreserveFramePointer •  y-axis: package name hierarchy –  java / util / ArrayList / ::size.
+```bash
+# perf record -F 199 -a -- sleep 30; ./jmaps
+# perf script | ./pkgsplit-perf.sh | ./flamegraph.pl > out.svg no	-g	(stacks)	Linux 2.6+ (pre-BPF):
+```
 
 65. Links & References  
   - Flame Graphs
@@ -115,19 +118,19 @@ $ jstack 1819 […] "main" prio=10 tid=0x00007ff304009000 nid=0x7361 runnable [0
     - http://queue.acm.org/detail.cfm?id=2927301
 
   - "The Flame Graph" CACM, Vol. 56, No. 6 (June 2016)
-  - http://techblog.netflix.com/2015/07/java-in-flames.html
-  - http://techblog.netflix.com/2016/04/saving-13-million-computational-minutes.html
-  - http://techblog.netflix.com/2014/11/nodejs-in-flames.html
-  -  http://www.brendangregg.com/blog/2014-11-09/differential-flame-graphs.html
+    - http://techblog.netflix.com/2015/07/java-in-flames.html
+    - http://techblog.netflix.com/2016/04/saving-13-million-computational-minutes.html
+    - http://techblog.netflix.com/2014/11/nodejs-in-flames.html
+    - http://www.brendangregg.com/blog/2014-11-09/differential-flame-graphs.html
   - Linux perf_events
-  - https://perf.wiki.kernel.org/index.php/Main_Page
-  - http://www.brendangregg.com/perf.html
-  -  http://www.brendangregg.com/blog/2015-02-27/linux-profiling-at-netflix.html
-  - Linux 4.5: http://www.brendangregg.com/blog/2016-04-30/linux-perf-folded.htm
+    - https://perf.wiki.kernel.org/index.php/Main_Page
+    - http://www.brendangregg.com/perf.html
+    - http://www.brendangregg.com/blog/2015-02-27/linux-profiling-at-netflix.html
+    - Linux 4.5: http://www.brendangregg.com/blog/2016-04-30/linux-perf-folded.htm
   -  Netflix Vector
-  - https://github.com/netflix/vector
-  -  http://techblog.netflix.com/2015/04/introducing-vector-netflixs-on-host.html
-  - hprof: http://www.brendangregg.com/blog/2014-06-09/java-cpu-sampling-using-hprof.html
+    - https://github.com/netflix/vector
+    - http://techblog.netflix.com/2015/04/introducing-vector-netflixs-on-host.html
+    - hprof: http://www.brendangregg.com/blog/2014-06-09/java-cpu-sampling-using-hprof.html
 66. Thanks • 
   Questions?
   -  http://techblog.netflix.com
