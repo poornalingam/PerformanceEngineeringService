@@ -34,13 +34,13 @@ Netflow | Ent License|[X]|[X]|[X]|[X]|||
 ## Linux Performance Observation tools
 The bellow tools are primary to analysis system latency in every level and tracing. Analyzing the kernel level call will enable to find bottleneck, resource constrains, utilization, saturation, errors. These tools are basic need for USE method, Lantency method. Create the one liner commands using these tools and use it as when need. This article provides few one liner for quick analysis. It must be updated as we progress.
 
-- [ftrace](Linux-Performance-Observation-Tools.md#ftrace)
-- [perf](Linux-Performance-Observation-Tools.md#perf)
-- [eBPF - extended BPF](Linux-Performance-Observation-Tools.md#extended-bpf)
-- [dtrace - Dynamic tracing](Linux-Performance-Observation-Tools.md#dtrace---dynamic-tracing)
-- [SAR - System Activity Reporter](Linux-Performance-Observation-Tools.md#sar---system-activity-reporter)
-- [Opensource tools - perf-tool](Linux-Performance-Observation-Tools.md#opensource-tools)
-- [Visual tools](Linux-Performance-Observation-Tools.md#visual-tools)
+- [ftrace](/observability-tools/Linux-Performance-Observation-Tools.md#ftrace)
+- [perf](/observability-tools/Linux-Performance-Observation-Tools.md#perf)
+- [eBPF - extended BPF](/observability-tools/Linux-Performance-Observation-Tools.md#extended-bpf)
+- [dtrace - Dynamic tracing](/observability-tools/Linux-Performance-Observation-Tools.md#dtrace---dynamic-tracing)
+- [SAR - System Activity Reporter](/observability-tools/Linux-Performance-Observation-Tools.md#sar---system-activity-reporter)
+- [Opensource tools - perf-tool](/observability-tools/Linux-Performance-Observation-Tools.md#opensource-tools)
+- [Visual tools](/observability-tools/Linux-Performance-Observation-Tools.md#visual-tools)
   1. Kernelshark - for ftrace
   2. Trace Compass - to visualize LTTng (Linux Trace Toolkit, next generation) time service trace data
   3. Flame graphs - for any profiles with stack traces
@@ -65,6 +65,8 @@ TBD
 
 ## APM Family Tools
 These application profiling tools are useful to collect stack trace of application calls, find a common code path, collect and analyze response time of a code path, aggregation of code responses, resource utilization in application level (JVM), CPU Sampling, etc. Basically it probes the application in JVM level.   
+
+Also have a look Flame Graph and vector tools. These tools are providing call stacks for application and kernel in mix-mode.  
 
 ### DynaTrace
 TBD
