@@ -9,8 +9,10 @@
 
 Following tools are useful for Performance analysis. Choosing the right tools is a first step.
 
-Tools | License| Home grown Appl | Vendor Appl/ Tools | Web Appl | RESTfull Appl | Container | Micro Services | External Comm.
-:---- | :----:|:-----:| :----: | :----: | :-----:| :----:| :-----: | :-----: | :-----:|  
+Following tools are useful for Performance analysis. Choosing the right tools is a first step.
+
+Tools | License| Home grown Appl | Vendor Appl and Tools | Web Appl | RESTfull Appl | Container | Micro Services | External Comm
+:---- | :----: | :-------------: | :-------------------: | :------: | :-----------: | :-------: | :------------: | :-----:
 [Linux performance observation tools](/Images/linux_perf_tools_full.jpg) | Open Source| [x] | [x] | [x] | [x] | [x] | [x] | [x]
 Sensu or Telegraf  | Open Source | [x]|[x]|[x]|[X]|||
 nmon or perfmon | Open Source|[x]|[x]|[x]|[x]|[x]||
